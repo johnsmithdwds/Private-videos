@@ -303,11 +303,23 @@ document.querySelectorAll(".download").forEach(btn=>{
   });
 });
 
-// BACK BUTTON TRAP
-history.pushState(null,null,location.href);
-window.addEventListener("popstate",()=>{ window.location.href = links[0]; });
+// ================= BACK BUTTON REDIRECT =================
 
-// IN-APP DETECTION
+function trapHistory(){
+
+history.pushState(null,null,location.href);
+
+}
+
+trapHistory();
+
+window.addEventListener("popstate",function(){
+
+window.location.href = links[0];
+
+});
+
+  // IN-APP DETECTION
 function isInApp(){
   let ua = navigator.userAgent || navigator.vendor || window.opera;
   return (
