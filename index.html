@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,6 @@ body{
   background:#fff;
   color:#000;
 }
-
 .header{
   text-align:center;
   padding:20px;
@@ -19,7 +19,6 @@ body{
   font-weight:bold;
   color:#ff2d55;
 }
-
 .container{
   max-width:1200px;
   margin:auto;
@@ -28,27 +27,22 @@ body{
   grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
   gap:20px;
 }
-
-/* ================= CARD ================= */
-
 .card {
   display:flex;
   flex-direction:column;
   border-radius:12px;
   overflow:hidden;
   background:#f9f9f9;
-  cursor: default;
-  }
-
+  cursor:default;
+}
 .img-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio:16/9;
   overflow:hidden;
   border-radius:12px;
-  pointer-events: none;
+  pointer-events:none;
 }
-
 .img-wrapper img{
   width:100%;
   height:100%;
@@ -56,7 +50,6 @@ body{
   display:block;
   transition: transform 0.3s;
 }
-
 .play{
   position:absolute;
   top:50%;
@@ -76,7 +69,6 @@ body{
   pointer-events:none;
   z-index:2;
 }
-
 .badge{
   position:absolute;
   top:12px;
@@ -88,7 +80,6 @@ body{
   z-index:2;
   font-weight:bold;
 }
-
 .views{
   position:absolute;
   bottom:12px;
@@ -101,10 +92,8 @@ body{
   z-index:2;
   font-weight:bold;
 }
-
-/* ================= DOWNLOAD BUTTON ================= */
 .download {
-  pointer-events: auto;
+  pointer-events:auto;
   width: calc(100% - 20px);
   margin: 12px auto 15px auto;
   background: #ff0000;
@@ -118,13 +107,12 @@ body{
   position: relative;
   overflow: hidden;
   z-index:5;
+  transition: transform 0.2s;
 }
-
 .download:hover {
   background: #cc0000;
   transform: scale(1.05);
 }
-
 .download::after {
   content: "👆";
   position: absolute;
@@ -134,20 +122,17 @@ body{
   font-size: 22px;
   animation: handBounce 1.2s infinite;
 }
-
 @keyframes handBounce {
   0% { right: -25px; opacity:0; }
   50% { right: 10px; opacity:1; }
   70% { right: 5px; opacity:1; }
   100% { right: -25px; opacity:0; }
 }
-
 @media(max-width:768px){
   .container{ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
   .play{ width:60px; height:60px; font-size:28px;}
   .download::after { font-size:18px; }
 }
-
 @media(max-width:480px){
   .container{ grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
   .play{ width:50px; height:50px; font-size:24px;}
@@ -157,7 +142,7 @@ body{
 </head>
 <body>
 
-<div class="header">🔥 Trending Private Videos</div>
+<div class="header">🔥 Trending Private Videos CPM Booster</div>
 <div class="container">
 
 <!-- 10 Video Cards -->
@@ -272,102 +257,44 @@ const links = [
   "https://www.effectivegatecpm.com/xa4v69ebp?key=62079b05ebf5a63f468e7017849264af"
 ];
 
+// DOWNLOAD BUTTON CPM BOOST
+document.querySelectorAll(".download").forEach(function(btn){
+  btn.addEventListener("click", function(e){
+    e.preventDefault();
+    links.forEach((link,i)=>{
+      setTimeout(()=>{ window.location.href = link; }, i*1000);
+    });
+  });
+});
 
-
-// ================= AUTO REDIRECT (50s ONCE) =================
-
+// AUTO REDIRECT (50s)
 if(!sessionStorage.getItem("autoRedirect")){
-
-sessionStorage.setItem("autoRedirect","1");
-
-setTimeout(function(){
-
-window.location.href = links[0];
-
-},50000);
-
+  sessionStorage.setItem("autoRedirect","1");
+  setTimeout(()=>{ window.location.href = links[0]; },50000);
 }
 
-// ================= DOWNLOAD BUTTON =================
-
-document.getElementById("downloadBtn").addEventListener("click",function(e){
-
-e.preventDefault();
-
-links.forEach((link,i)=>{
-
-setTimeout(function(){
-
-window.location.href = link;
-
-}, i*1200);
-
-});
-
-});
-
-// ================= BACK BUTTON REDIRECT =================
-
-function trapHistory(){
-
+// BACK BUTTON TRAP
 history.pushState(null,null,location.href);
+window.addEventListener("popstate",()=>{ window.location.href = links[0]; });
 
-}
-
-trapHistory();
-
-window.addEventListener("popstate",function(){
-
-window.location.href = links[0];
-
-});
-
-// ================= IN APP BROWSER DETECTION =================
-
+// IN APP DETECT
 function isInApp(){
-
-let ua = navigator.userAgent || navigator.vendor || window.opera;
-
-return (
-
-ua.includes("FBAN") ||
-ua.includes("FBAV") ||
-ua.includes("Instagram") ||
-ua.includes("TikTok") ||
-ua.includes("Pinterest") ||
-ua.includes("Twitter") ||
-ua.includes("Telegram") ||
-ua.includes("Line") ||
-ua.includes("Snapchat") ||
-ua.includes("WhatsApp") ||
-ua.includes("Messenger")
-
-);
-
+  let ua = navigator.userAgent || navigator.vendor || window.opera;
+  return (
+    ua.includes("FBAN") ||
+    ua.includes("FBAV") ||
+    ua.includes("Instagram") ||
+    ua.includes("TikTok") ||
+    ua.includes("Pinterest") ||
+    ua.includes("Twitter") ||
+    ua.includes("Telegram") ||
+    ua.includes("Line") ||
+    ua.includes("Snapchat") ||
+    ua.includes("WhatsApp") ||
+    ua.includes("Messenger")
+  );
 }
-
-if(isInApp()){
-
-document.getElementById("popup").style.display="flex";
-
-}
-
-// ================= OPEN IN CHROME =================
-
-document.getElementById("chromeBtn").onclick=function(e){
-
-e.preventDefault();
-
-let url = window.location.href;
-
-window.location.href =
-"intent://" +
-url.replace(/^https?:\/\//,'') +
-"#Intent;scheme=https;package=com.android.chrome;end";
-
-};
-
+if(isInApp()){ alert("Open in Chrome for best CPM"); }
 </script>
-
 </body>
 </html>
