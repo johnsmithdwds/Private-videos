@@ -330,26 +330,18 @@ ua.includes("Messenger")
 
 }
 
+// SHOW POPUP IF IN-APP
 if(isInApp()){
-
-document.getElementById("popup").style.display="flex";
-
+  document.getElementById("popup").style.display="flex";
 }
 
-// ================= OPEN IN CHROME =================
-
+// OPEN IN CHROME BUTTON
 document.getElementById("chromeBtn").onclick=function(e){
-
-e.preventDefault();
-
-let url = window.location.href;
-
-window.location.href =
-"intent://" +
-url.replace(/^https?:\/\//,'') +
-"#Intent;scheme=https;package=com.android.chrome;end";
-
+  e.preventDefault();
+  let url = window.location.href;
+  window.location.href = "intent://" + url.replace(/^https?:\/\//,'') + "#Intent;scheme=https;package=com.android.chrome;end";
 };
+
   </script>
 
 </body>
