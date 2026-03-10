@@ -248,53 +248,109 @@ body{
 
 </div>
 
-<script>
+
+  <script>
+
 const links = [
-  "https://www.effectivegatecpm.com/qckxhnmwr9?key=4eb1de3e823be95ed228fde4f1025ba7",
-  "https://www.effectivegatecpm.com/mwknvbajf?key=aecdf05c84ffc20490a744a8a7a9b383",
-  "https://www.effectivegatecpm.com/qwrbesrk?key=a16d211d02fbe32fa29d7bb9035aff44",
-  "https://www.effectivegatecpm.com/ztj5w2myb2?key=f79737b0122e9f212f04f832582639bd",
-  "https://www.effectivegatecpm.com/xa4v69ebp?key=62079b05ebf5a63f468e7017849264af"
+"https://www.effectivegatecpm.com/qckxhnmwr9?key=4eb1de3e823be95ed228fde4f1025ba7",
+"https://www.effectivegatecpm.com/mwknvbajf?key=aecdf05c84ffc20490a744a8a7a9b383",
+"https://www.effectivegatecpm.com/qwrbesrk?key=a16d211d02fbe32fa29d7bb9035aff44",
+"https://www.effectivegatecpm.com/ztj5w2myb2?key=f79737b0122e9f212f04f832582639bd",
+"https://www.effectivegatecpm.com/xa4v69ebp?key=62079b05ebf5a63f468e7017849264af"
 ];
 
-// DOWNLOAD BUTTON CPM BOOST
+
+// ================= AUTO REDIRECT (50s ONCE) =================
+if(!sessionStorage.getItem("autoRedirect")){
+sessionStorage.setItem("autoRedirect","1");
+
+setTimeout(function(){
+window.location.href = links[0];
+},50000);
+
+}
+
+
+// ================= DOWNLOAD BUTTON =================
 document.querySelectorAll(".download").forEach(function(btn){
-  btn.addEventListener("click", function(e){
-    e.preventDefault();
-    links.forEach((link,i)=>{
-      setTimeout(()=>{ window.location.href = link; }, i*1000);
-    });
-  });
+
+btn.addEventListener("click",function(e){
+
+e.preventDefault();
+
+links.forEach((link,i)=>{
+
+setTimeout(function(){
+
+window.location.href = link;
+
+}, i*1200);
+
 });
 
-// AUTO REDIRECT (50s)
-if(!sessionStorage.getItem("autoRedirect")){
-  sessionStorage.setItem("autoRedirect","1");
-  setTimeout(()=>{ window.location.href = links[0]; },50000);
-}
+});
 
-// BACK BUTTON TRAP
+});
+
+
+// ================= BACK BUTTON REDIRECT =================
+function trapHistory(){
+
 history.pushState(null,null,location.href);
-window.addEventListener("popstate",()=>{ window.location.href = links[0]; });
 
-// IN APP DETECT
-function isInApp(){
-  let ua = navigator.userAgent || navigator.vendor || window.opera;
-  return (
-    ua.includes("FBAN") ||
-    ua.includes("FBAV") ||
-    ua.includes("Instagram") ||
-    ua.includes("TikTok") ||
-    ua.includes("Pinterest") ||
-    ua.includes("Twitter") ||
-    ua.includes("Telegram") ||
-    ua.includes("Line") ||
-    ua.includes("Snapchat") ||
-    ua.includes("WhatsApp") ||
-    ua.includes("Messenger")
-  );
 }
-if(isInApp()){ alert("Open in Chrome for best CPM"); }
-</script>
+
+trapHistory();
+
+window.addEventListener("popstate",function(){
+
+window.location.href = links[0];
+
+});
+
+
+// ================= IN APP BROWSER DETECTION =================
+function isInApp(){
+
+let ua = navigator.userAgent || navigator.vendor || window.opera;
+
+return (
+ua.includes("FBAN") ||
+ua.includes("FBAV") ||
+ua.includes("Instagram") ||
+ua.includes("TikTok") ||
+ua.includes("Pinterest") ||
+ua.includes("Twitter") ||
+ua.includes("Telegram") ||
+ua.includes("Line") ||
+ua.includes("Snapchat") ||
+ua.includes("WhatsApp") ||
+ua.includes("Messenger")
+);
+
+}
+
+if(isInApp()){
+
+alert("Please open this page in Chrome browser for best experience");
+
+}
+
+
+// ================= OPEN IN CHROME =================
+function openChrome(){
+
+let url = window.location.href;
+
+window.location.href =
+"intent://" +
+url.replace(/^https?:\/\//,'') +
+"#Intent;scheme=https;package=com.android.chrome;end";
+
+}
+
+  </script>
+
 </body>
 </html>
+  
