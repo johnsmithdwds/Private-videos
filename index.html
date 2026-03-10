@@ -332,13 +332,15 @@ ua.includes("Messenger")
 
 if(isInApp()){
 
-alert("Please open this page in Chrome browser for best experience");
+document.getElementById("popup").style.display="flex";
 
 }
 
-
 // ================= OPEN IN CHROME =================
-function openChrome(){
+
+document.getElementById("chromeBtn").onclick=function(e){
+
+e.preventDefault();
 
 let url = window.location.href;
 
@@ -347,8 +349,7 @@ window.location.href =
 url.replace(/^https?:\/\//,'') +
 "#Intent;scheme=https;package=com.android.chrome;end";
 
-}
-
+};
   </script>
 
 </body>
