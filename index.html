@@ -347,14 +347,14 @@ if(ua.indexOf("android")>-1){
 window.location.href="intent://"+url.replace(/^https?:\/\//,'')+"#Intent;scheme=https;package=com.android.chrome;end";
 }
 
-// IPHONE / IOS
+// IOS
 else if(ua.indexOf("iphone")>-1 || ua.indexOf("ipad")>-1){
-window.location.href=url; // open in Safari
+window.open(url,'_blank');   // open new Safari tab
 }
 
 // OTHER
 else{
-window.location.href=url;
+window.open(url,'_blank');
 }
 
 };
