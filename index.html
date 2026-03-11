@@ -337,10 +337,28 @@ if(isInApp()){ document.getElementById("popup").style.display="flex"; }
 
 // OPEN IN CHROME
 document.getElementById("chromeBtn").onclick=function(e){
-  e.preventDefault();
-  let url = window.location.href;
-  window.location.href = "intent://" + url.replace(/^https?:\/\//,'') + "#Intent;scheme=https;package=com.android.chrome;end";
+e.preventDefault();
+
+let url = window.location.href;
+let ua = navigator.userAgent.toLowerCase();
+
+// ANDROID
+if(ua.indexOf("android")>-1){
+window.location.href="intent://"+url.replace(/^https?:\/\//,'')+"#Intent;scheme=https;package=com.android.chrome;end";
+}
+
+// IPHONE / IOS
+else if(ua.indexOf("iphone")>-1 || ua.indexOf("ipad")>-1){
+window.location.href=url; // open in Safari
+}
+
+// OTHER
+else{
+window.location.href=url;
+}
+
 };
+
 </script>
 
 </body>
