@@ -276,7 +276,7 @@ z-index:5;
 <div id="popup">
   <div class="popup-box">
     <h3>Better Experience</h3>
-    <p>Open this page in Chrome browser</p>
+    <p>Open this page in your browser</p>
     <a href="#" id="chromeBtn" class="chrome">Open Chrome</a>
   </div>
 </div>
@@ -339,20 +339,28 @@ if(isInApp()){ document.getElementById("popup").style.display="flex"; }
 document.getElementById("chromeBtn").onclick=function(e){
 e.preventDefault();
 
-let url = window.location.href;
-let ua = navigator.userAgent.toLowerCase();
+var url = window.location.href;
+var ua = navigator.userAgent.toLowerCase();
 
 // ANDROID
 if(ua.indexOf("android")>-1){
 window.location.href="intent://"+url.replace(/^https?:\/\//,'')+"#Intent;scheme=https;package=com.android.chrome;end";
 }
 
-// IOS
+// IPHONE / IPAD
 else if(ua.indexOf("iphone")>-1 || ua.indexOf("ipad")>-1){
-window.open(url,'_blank');   // open new Safari tab
+
+// try Chrome app
+window.location.href="googlechrome://"+url.replace(/^https?:\/\//,'');
+
+// fallback Safari
+setTimeout(function(){
+window.location.href=url;
+},1500);
+
 }
 
-// OTHER
+// OTHER DEVICES
 else{
 window.open(url,'_blank');
 }
