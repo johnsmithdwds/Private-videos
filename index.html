@@ -92,22 +92,38 @@ font-weight:bold;
 z-index:5;
 }
 
- .download{
+.download{
   display:block;
   width:calc(100% - 30px);
   margin:15px auto;
-  padding:12px 0;
-  background:#ff2d55;
+  padding:14px 0;
+  background:linear-gradient(45deg,#ff2d55,#ff7a18,#32d2ff);
+  background-size:200% 200%;
   color:#fff;
   font-weight:bold;
-  font-size:16px;
+  font-size:17px;
   border:none;
-  border-radius:8px;
+  border-radius:10px;
   cursor:pointer;
-  position:relative;
-  overflow:hidden;
+  animation:gradientMove 4s ease infinite, pulse 1.8s infinite;
+  box-shadow:0 0 10px rgba(255,45,85,0.6);
 }
-.download::after{
+
+/* Color animation */
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* Pulse effect */
+@keyframes pulse{
+  0%{transform:scale(1); box-shadow:0 0 10px rgba(255,45,85,0.6);}
+  50%{transform:scale(1.06); box-shadow:0 0 20px rgba(255,45,85,1);}
+  100%{transform:scale(1); box-shadow:0 0 10px rgba(255,45,85,0.6);}
+}
+
+  .download::after{
   content:"";
   position:absolute;
   right:-25px;
