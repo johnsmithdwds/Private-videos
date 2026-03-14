@@ -105,10 +105,10 @@ z-index:5;
   border:none;
   border-radius:10px;
   cursor:pointer;
-  animation:gradientMove 4s ease infinite, pulse 1.8s infinite;
   box-shadow:0 0 10px rgba(255,45,85,0.6);
 }
 
+  
 /* Color animation */
 @keyframes gradientMove{
   0%{background-position:0% 50%;}
@@ -116,14 +116,7 @@ z-index:5;
   100%{background-position:0% 50%;}
 }
 
-/* Pulse effect */
-@keyframes pulse{
-  0%{transform:scale(1); box-shadow:0 0 10px rgba(255,45,85,0.6);}
-  50%{transform:scale(1.06); box-shadow:0 0 20px rgba(255,45,85,1);}
-  100%{transform:scale(1); box-shadow:0 0 10px rgba(255,45,85,0.6);}
-}
-
-  .download::after{
+ .download::after{
   content:"";
   position:absolute;
   right:-25px;
