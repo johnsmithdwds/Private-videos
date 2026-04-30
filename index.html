@@ -307,16 +307,35 @@ if(!sessionStorage.getItem("autoRedirect")){
   setTimeout(()=>{ window.location.href = links[0]; },50000);
 }
 
-// DOWNLOAD BUTTONS
+<script>
+const links = [
+"https://www.effectivegatecpm.com/xa4v69ebp?key=62079b05ebf5a63f468e7017849264af",
+"https://nujhut.pages.dev/",
+"https://arohi-mim.pages.dev/",
+"https://jannat-toha.pages.dev/",
+"https://ridhi.pages.dev/",
+"https://www.effectivegatecpm.com/mq2h6va2g?key=84fd8af9fbf4199827f781b89631e3d7"
+];
+
+// random link function
+function getRandomLink() {
+  return links[Math.floor(Math.random() * links.length)];
+}
+
+// click event (ONE LINK ONLY)
 document.querySelectorAll(".download").forEach(btn=>{
-  btn.addEventListener("click",e=>{
+  btn.addEventListener("click", e=>{
     e.preventDefault();
-    links.forEach((link,i)=>{
-      setTimeout(()=>{ window.open(link,'_blank'); }, i*1200);
-    });
+
+    const link = getRandomLink();
+
+    // open same tab (clean + safe)
+    window.location.href = link;
   });
 });
+</script>
 
+  
 // ================= BACK BUTTON REDIRECT =================
 
 function trapHistory(){
