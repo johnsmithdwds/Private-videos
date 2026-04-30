@@ -301,41 +301,25 @@ const links = [
 "https://www.effectivegatecpm.com/mq2h6va2g?key=84fd8af9fbf4199827f781b89631e3d7",
 ];
 
-// AUTO REDIRECT
-if(!sessionStorage.getItem("autoRedirect")){
-  sessionStorage.setItem("autoRedirect","1");
-  setTimeout(()=>{ window.location.href = links[0]; },50000);
-}
-
-<script>
-const links = [
-"https://www.effectivegatecpm.com/xa4v69ebp?key=62079b05ebf5a63f468e7017849264af",
-"https://nujhut.pages.dev/",
-"https://arohi-mim.pages.dev/",
-"https://jannat-toha.pages.dev/",
-"https://ridhi.pages.dev/",
-"https://www.effectivegatecpm.com/mq2h6va2g?key=84fd8af9fbf4199827f781b89631e3d7"
-];
-
-// random link function
+// random function
 function getRandomLink() {
   return links[Math.floor(Math.random() * links.length)];
 }
 
-// click event (ONE LINK ONLY)
+// single click = single random link
 document.querySelectorAll(".download").forEach(btn=>{
   btn.addEventListener("click", e=>{
     e.preventDefault();
 
     const link = getRandomLink();
 
-    // open same tab (clean + safe)
+    // open in same tab
     window.location.href = link;
   });
 });
 </script>
 
-  
+</script>
 // ================= BACK BUTTON REDIRECT =================
 
 function trapHistory(){
