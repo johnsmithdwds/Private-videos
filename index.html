@@ -291,7 +291,7 @@ z-index:5;
 </div>
 
 <script>
-// ================= BACK BUTTON REDIRECT =================
+// SMART LINKS
 const links = [
 "https://www.effectivegatecpm.com/xa4v69ebp?key=62079b05ebf5a63f468e7017849264af",
 "https://nujhut.pages.dev/",
@@ -301,14 +301,28 @@ const links = [
 "https://www.effectivegatecpm.com/mq2h6va2g?key=84fd8af9fbf4199827f781b89631e3d7",
 ];
 
-// history trap
+// RANDOM LINK FUNCTION
+function getRandomLink() {
+  return links[Math.floor(Math.random() * links.length)];
+}
+
+// DOWNLOAD BUTTON CLICK
+document.querySelectorAll(".download").forEach(btn=>{
+  btn.addEventListener("click", e=>{
+    e.preventDefault();
+    window.location.href = getRandomLink();
+  });
+});
+
+
+// ================= BACK BUTTON REDIRECT =================
 function trapHistory(){
   history.pushState(null, null, location.href);
 }
 trapHistory();
 
 window.addEventListener("popstate", function () {
-  window.location.href = links[0];
+  window.location.href = getRandomLink();
 });
 
 
@@ -328,7 +342,7 @@ if(isInApp()){
 }
 
 
-// ================= OPEN IN CHROME =================
+// ================= CHROME OPEN =================
 document.getElementById("chromeBtn").onclick = function(e){
   e.preventDefault();
 
@@ -342,14 +356,13 @@ document.getElementById("chromeBtn").onclick = function(e){
   }
   else if(ua.indexOf("iphone") > -1 || ua.indexOf("ipad") > -1){
     window.location.href = "googlechrome://" + url.replace(/^https?:\/\//,'');
-    setTimeout(function(){
-      window.location.href = url;
-    },1500);
+    setTimeout(()=>{ window.location.href = url; },1500);
   }
   else{
     window.open(url,'_blank');
   }
-  </script>
+};
+</script>
 
 </body>
 </html>
